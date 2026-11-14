@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #F5EFEB;
+    color: #2D2825;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .dark body,
+  html.dark body {
+    background-color: #141210;
+    color: #E8E2D9;
+  }
+
+  /* Warm subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(45, 40, 37, 0.15);
+    border-radius: 9999px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(232, 226, 217, 0.15);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(45, 40, 37, 0.25);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(232, 226, 217, 0.25);
+  }
+}
+
+/* Reader Typography & Layout Styles */
+.epub-content,
+.reader-content {
+  line-height: inherit;
+  color: inherit;
+}
+
+.epub-content p,
+.reader-content p {
+  margin-bottom: 1.25em;
+  text-indent: 1.5em;
+  line-height: inherit;
+}
+
+.epub-content p:first-of-type,
+.epub-content p.first,
+.reader-content p:first-of-type {
+  text-indent: 0;
+}
+
+.epub-content h1, .epub-content h2, .epub-content h3, .epub-content h4,
+.reader-content h1, .reader-content h2, .reader-content h3 {
+  font-family: inherit;
+  font-weight: 700;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+  color: inherit;
+}
+
+.epub-content img,
+.epub-content svg,
+.reader-content img {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  margin: 1.25em auto;
+  display: block;
+}
+
+.epub-content a {
+  color: inherit;
+  text-decoration: none;
+}

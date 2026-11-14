@@ -1,0 +1,8 @@
+# Enforce LF line endings for migrations and source files to maintain exact SQLX checksums
+*.sql text eol=lf
+*.rs text eol=lf
+*.toml text eol=lf
+*.json text eol=lf
+*.tsx text eol=lf
+*.ts text eol=lf
+

@@ -1,0 +1,71 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: epub_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-epub_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-epub_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-epub_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-epub_user} -d ${POSTGRES_DB:-epub_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - epub_net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: epub_backend
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: 8080
+      DATABASE_URL: postgres://${POSTGRES_USER:-epub_user}:${POSTGRES_PASSWORD:-epub_secret}@db:5432/${POSTGRES_DB:-epub_db}
+      CORS_ORIGIN: http://localhost:5173
+      STORAGE_DIR: /app/storage
+      AI_PROVIDER: ${AI_PROVIDER:-gemini}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash-lite}
+      LOCAL_MODEL_URL: ${LOCAL_MODEL_URL:-http://host.docker.internal:11434/api/generate}
+      LOCAL_MODEL_NAME: ${LOCAL_MODEL_NAME:-qwen2.5:1.5b}
+    volumes:
+      - epub_storage:/app/storage
+      - ./books:/app/sample_books:ro
+    networks:
+      - epub_net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: epub_frontend
+    restart: always
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8080/api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - epub_net
+
+volumes:
+  postgres_data:
+  epub_storage:
+
+networks:
+  epub_net:
+    driver: bridge
