@@ -60,8 +60,16 @@ export const App: React.FC = () => {
     }
   };
 
+  // Check URL parameters for direct book/chapter link on mount
   useEffect(() => {
     loadBooks();
+
+    const params = new URLSearchParams(window.location.search);
+    const bookId = params.get('bookId');
+    const chapterParam = params.get('chapter');
+    if (bookId) {
+      handleOpenBook(bookId, chapterParam ? parseInt(chapterParam, 10) : undefined);
+    }
   }, []);
 
   useEffect(() => {
@@ -70,10 +78,20 @@ export const App: React.FC = () => {
     }
   }, [currentTab]);
 
-  const handleOpenBook = async (bookId: string) => {
+  const handleOpenBook = async (bookId: string, initialChapterIndex?: number) => {
     try {
       const detail = await api.getBookDetail(bookId);
+      if (initialChapterIndex !== undefined && !isNaN(initialChapterIndex)) {
+        detail.current_chapter_index = Math.max(0, Math.min(initialChapterIndex, detail.total_chapters - 1));
+      }
       setActiveBook(detail);
+
+      const url = new URL(window.location.href);
+      url.searchParams.set('bookId', bookId);
+      if (initialChapterIndex !== undefined) {
+        url.searchParams.set('chapter', initialChapterIndex.toString());
+      }
+      window.history.replaceState({}, '', url.toString());
     } catch (err) {
       console.error('Failed to open book', err);
     }
@@ -102,6 +120,10 @@ export const App: React.FC = () => {
         onToggleTheme={toggleTheme}
         onBackToLibrary={() => {
           setActiveBook(null);
+          const url = new URL(window.location.href);
+          url.searchParams.delete('bookId');
+          url.searchParams.delete('chapter');
+          window.history.replaceState({}, '', url.pathname);
           loadBooks(); // refresh reading progress
         }}
       />

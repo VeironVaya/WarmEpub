@@ -41,6 +41,15 @@ backend/storage/
 *.db
 
 # ==========================================
+# Desktop & Binary Artifacts
+# ==========================================
+dist-package/
+**/dist-package/
+frontend_dist/
+**/frontend_dist/
+*.exe
+
+# ==========================================
 # Temporary Files & Test Profiles
 # ==========================================
 temp_profile/

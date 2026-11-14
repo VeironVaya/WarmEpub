@@ -1,0 +1,30 @@
+{
+  "appId": "com.warmepub.reader",
+  "productName": "WarmEpub",
+  "directories": {
+    "output": "dist-package"
+  },
+  "files": [
+    "src/**/*",
+    "frontend_dist/**/*",
+    "package.json",
+    "node_modules/**/*"
+  ],
+  "extraResources": [
+    {
+      "from": "../books",
+      "to": "books",
+      "filter": ["*.epub"]
+    }
+  ],
+  "win": {
+    "target": [
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ],
+    "artifactName": "WarmEpub-Portable.exe"
+  }
+}
+

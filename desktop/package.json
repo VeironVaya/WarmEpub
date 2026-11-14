@@ -1,0 +1,26 @@
+{
+  "name": "warm-epub-desktop",
+  "version": "1.0.0",
+  "description": "Modern Warm EPUB Reader - Desktop Application",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:frontend": "npm --prefix ../frontend run build && powershell -Command \"Copy-Item -Path ../frontend/dist -Destination frontend_dist -Recurse -Force\"",
+    "build:win": "npm run build:frontend && electron-builder --win portable --config electron-builder.json",
+    "pack": "electron-builder --dir --config electron-builder.json"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "fast-xml-parser": "^4.5.3",
+    "multer": "^1.4.5-lts.1",
+    "sql.js": "^1.12.0",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "electron": "^34.2.0",
+    "electron-builder": "^25.1.8"
+  }
+}

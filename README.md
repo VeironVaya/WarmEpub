@@ -24,11 +24,28 @@
 - **1-Click AI Translation & Nuance**: Click any word or highlight an entire sentence to see instant dictionary translations, phonetic guides, and deep contextual nuances.
 - **Pluggable AI Backend**: Use Google Gemini API for cloud speed, or switch to local offline Ollama models for 100% privacy and zero cost.
 - **Personal Vocabulary Notebook**: Star unfamiliar words and review them with audio pronunciation and the original sentences in which they appeared.
-- **Zero Host Prerequisites**: Runs the entire stack (PostgreSQL + Rust Axum Backend + Vite React Frontend) with a single Docker command.
+- **Zero Host Prerequisites**: Runs the entire stack with a single Docker command, OR launch as a **standalone Windows Desktop App (`.exe`)** with zero Docker needed!
 
 ---
 
-## 🚀 Quick Start (Single Command)
+## 🖥️ Standalone Windows Desktop App (.exe — Zero Docker Required!)
+
+If you prefer reading your books directly on Windows without starting Docker or running background terminal servers:
+
+1. **Direct Launch**:
+   - Double-click **`desktop/dist-package/WarmEpub-Portable.exe`**.
+   - The native desktop app opens instantly with embedded SQLite storage (`%APPDATA%\WarmEpub\warmepub.db`), 2-page book mode, dark mode, and offline reading.
+2. **Building the Executable Yourself**:
+   ```bash
+   cd desktop
+   npm install
+   npm run build:win
+   ```
+   The self-contained executable is built directly into `desktop/dist-package/WarmEpub-Portable.exe`.
+
+---
+
+## 🚀 Web & Docker Quick Start (Single Command)
 
 The entire application runs through Docker Compose with zero manual database or language toolchain setup:
 
