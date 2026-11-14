@@ -12,6 +12,15 @@
 
 ---
 
+## 🚀 Download & Run (No Install / No Docker Required)
+
+Download the single portable `.exe` from our latest release:
+👉 **[Download WarmEpub-Portable.exe (Windows)](https://github.com/VeironVaya/readme/releases/latest/download/WarmEpub-Portable.exe)**
+
+Just double-click to run! No Node.js, Docker, or database setup needed.
+
+---
+
 ## ⚡ Executive Summary
 
 **WarmEpub** bridges the gap between traditional offline ebook cataloging and modern editorial web design. It offers readers a peaceful sanctuary for deep reading, paired with instant AI nuance translation that never disrupts your reading immersion.
@@ -32,8 +41,8 @@
 
 If you prefer reading your books directly on Windows without starting Docker or running background terminal servers:
 
-1. **Direct Launch**:
-   - Double-click **`desktop/dist-package/WarmEpub-Portable.exe`**.
+1. **Instant Download & Run**:
+   - Download **[WarmEpub-Portable.exe](https://github.com/VeironVaya/readme/releases/latest/download/WarmEpub-Portable.exe)** and double-click to launch.
    - The native desktop app opens instantly with embedded SQLite storage (`%APPDATA%\WarmEpub\warmepub.db`), 2-page book mode, dark mode, and offline reading.
 2. **Building the Executable Yourself**:
    ```bash
@@ -78,15 +87,15 @@ That's it! Open your browser:
 
 WarmEpub is built with a pluggable AI engine (`AiProvider` trait). You can choose between **Cloud AI**, **Local Offline AI**, or **Pure Core Mode**:
 
-| Feature | Core Mode (No Key) | Google Gemini (Cloud) | Ollama (Local & Free) |
-| :--- | :---: | :---: | :---: |
-| **Reading & Library** | ✅ Full | ✅ Full | ✅ Full |
-| **2-Page Book Mode** | ✅ Full | ✅ Full | ✅ Full |
-| **Universal Dark Mode** | ✅ Full | ✅ Full | ✅ Full |
-| **Book Uploads & Progress** | ✅ Full | ✅ Full | ✅ Full |
-| **Word / Sentence Definition** | ⚠️ Fallback Placeholder | ✅ Instant AI Nuance | ✅ Offline Local AI |
-| **Internet Required** | ❌ No | ✅ Yes | ❌ No |
-| **Cost** | Free | Free Tier Available | Free & Open-Source |
+| Feature                        |   Core Mode (No Key)   | Google Gemini (Cloud) | Ollama (Local & Free) |
+| :----------------------------- | :--------------------: | :-------------------: | :-------------------: |
+| **Reading & Library**          |         ✅ Full         |        ✅ Full         |        ✅ Full         |
+| **2-Page Book Mode**           |         ✅ Full         |        ✅ Full         |        ✅ Full         |
+| **Universal Dark Mode**        |         ✅ Full         |        ✅ Full         |        ✅ Full         |
+| **Book Uploads & Progress**    |         ✅ Full         |        ✅ Full         |        ✅ Full         |
+| **Word / Sentence Definition** | ⚠️ Fallback Placeholder |  ✅ Instant AI Nuance  |  ✅ Offline Local AI   |
+| **Internet Required**          |          ❌ No          |         ✅ Yes         |         ❌ No          |
+| **Cost**                       |          Free          |  Free Tier Available  |  Free & Open-Source   |
 
 ### Option A: Google Gemini API (Recommended for Speed & Accuracy)
 1. Get a free API key at [Google AI Studio](https://aistudio.google.com/app/apikey).
